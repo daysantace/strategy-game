@@ -1,0 +1,10 @@
+{
+	"EIRE":{
+		"name":"Ireland",
+		"colour":"#23994d"
+	},
+	"UKUK":{
+		"name":"United Kingdom",
+		"colour":"#ac2c32"
+	}
+}
