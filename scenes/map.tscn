@@ -2,18 +2,20 @@
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_877ab"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_0cakx"]
-[ext_resource type="Texture2D" uid="uid://rqt1ikfpjuwu" path="res://assets/map/ireland.png" id="3_jsh2l"]
+[ext_resource type="Texture2D" uid="uid://uj8xdteaadxk" path="res://assets/map/testing.png" id="3_0lji6"]
 
 [node name="planet" type="Node2D"]
-position = Vector2(0.30572, 3.51796)
 script = ExtResource("1_877ab")
 
 [node name="camera" type="Camera2D" parent="."]
 script = ExtResource("2_0cakx")
 
 [node name="map" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("3_jsh2l")
+texture = ExtResource("3_0lji6")
 centered = false
 
-[node name="provinces" type="Node" parent="."]
+[node name="provinces" type="Node2D" parent="."]
+
+[node name="provnames" type="Node2D" parent="."]
+
+[node name="country-names" type="Node2D" parent="."]

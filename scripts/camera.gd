@@ -31,7 +31,7 @@ func _process(delta):
 		zoom_level-=0.05
 	if Input.is_action_just_pressed("cam_out"):
 		zoom_level+=0.05
-	zoom_level=clamp(zoom_level,0.1,3.75)
+	zoom_level=clamp(zoom_level,0.1,5)
 	zoom=Vector2(zoom_level,zoom_level)
 	
 	position += ((pan_direction * (100+acceleration) * delta)/diag_fix)/zoom_level

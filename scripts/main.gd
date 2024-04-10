@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var image_source = "res://assets/map/ireland.png"
+@onready var image_source = "res://assets/map/testing.png"
 
 var pixels_read = 0
 var pixels_to_report = 100000
@@ -18,7 +18,12 @@ func load_regions():
 	var regions_dict = import_file("res://assets/map/provinces.txt")
 	
 	if regions_dict == null:
-		return  # Exit the function if regions_dict is null
+		log_message.error("Regions dictionary file not found or failed to parse")
+		return
+		
+	if image == null:
+		log_message.error("Map image not found")
+		return
 	
 	log_message.info("Map loaded")
 	

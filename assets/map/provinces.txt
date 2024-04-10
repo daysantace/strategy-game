@@ -1,38 +1,82 @@
 {
-	"#ff0000":{
-		"provname":"Belfast",
-		"owner":"UKUK"
+	"#000001":{
+		"provname":"North Sakhalin",
+		"owner":"RSYA"
 	},
-	"#84ff00":{
-		"provname":"Derry",
-		"owner":"UKUK"
+	"#000002":{
+		"provname":"South Sakhalin",
+		"owner":"RSYA"
 	},
-	"#008cff":{
-		"provname":"Donegal",
-		"owner":"EIRE"
+	"#000003":{
+		"provname":"Hokkaido",
+		"owner":"NIHN"
 	},
-	"#ffac00":{
-		"provname":"Dublin",
-		"owner":"EIRE"
+	"#000004":{
+		"provname":"West Kurils",
+		"owner":"RSYA"
 	},
-	"#00ffc0":{
-		"provname":"Waterford",
-		"owner":"EIRE"
+	"#000005":{
+		"provname":"East Kurils",
+		"owner":"RSYA"
 	},
-	"#0058ff":{
-		"provname":"Cork",
-		"owner":"EIRE"
+	"#000006":{
+		"provname":"Tohoku",
+		"owner":"NIHN"
 	},
-	"#ff00e5":{
-		"provname":"Limerick",
-		"owner":"EIRE"
+	"#000007":{
+		"provname":"Kanto",
+		"owner":"NIHN"
 	},
-	"#c7334a":{
-		"provname":"Roscommon",
-		"owner":"EIRE"
+	"#000008":{
+		"provname":"Chubu",
+		"owner":"NIHN"
 	},
-	"#17a65b":{
-		"provname":"Galway",
-		"owner":"EIRE"
+	"#000009":{
+		"provname":"Kansai",
+		"owner":"NIHN"
+	},
+	"#00000a":{
+		"provname":"Chugoku",
+		"owner":"NIHN"
+	},
+	"#00000b":{
+		"provname":"Shikoku",
+		"owner":"NIHN"
+	},
+	"#00000c":{
+		"provname":"Kyushu",
+		"owner":"NIHN"
+	},
+	"#00000d":{
+		"provname":"Honam",
+		"owner":"HNGK"
+	},
+	"#00000e":{
+		"provname":"Gyeongsang",
+		"owner":"HNGK"
+	},
+	"#00000f":{
+		"provname":"Chungcheong",
+		"owner":"HNGK"
+	},
+	"#000010":{
+		"provname":"Gyeonggi",
+		"owner":"HNGK"
+	},
+	"#000011":{
+		"provname":"Hamgyong",
+		"owner":"CHSN"
+	},
+	"#000012":{
+		"provname":"Pyongan",
+		"owner":"CHSN"
+	},
+	"#000013":{
+		"provname":"Hwanghae",
+		"owner":"CHSN"
+	},
+	"#000014":{
+		"provname":"Kangwon",
+		"owner":"CHSN"
 	}
 }

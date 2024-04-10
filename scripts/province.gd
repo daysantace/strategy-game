@@ -5,6 +5,7 @@ var region_owner=""
 var colour
 
 func _ready():
+	log_message.debug(position)
 	set_colour()
 	
 func set_colour():
@@ -14,7 +15,7 @@ func set_colour():
 		var colour_str = country_dict[region_owner]["colour"]
 		colour = Color(colour_str.substr(1))
 	else:
-		log_message.warn("Region owner '" + region_owner + "' not found in country dictonary, setting to grey")
+		log_message.warn("Region owner '" + region_owner + "' not found in country dictonary")
 		colour = Color8(128,128,128)
 	
 func _on_child_entered_tree(node):

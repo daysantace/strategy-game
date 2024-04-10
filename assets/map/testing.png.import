@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rqt1ikfpjuwu"
-path="res://.godot/imported/ireland.png-6cc83448d072cad0bee55f56eb31b981.ctex"
+uid="uid://uj8xdteaadxk"
+path="res://.godot/imported/testing.png-9ebc8f1c38c1df122239bde3700b5e24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/ireland.png"
-dest_files=["res://.godot/imported/ireland.png-6cc83448d072cad0bee55f56eb31b981.ctex"]
+source_file="res://assets/map/testing.png"
+dest_files=["res://.godot/imported/testing.png-9ebc8f1c38c1df122239bde3700b5e24.ctex"]
 
 [params]
 
@@ -28,7 +28,7 @@ roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=true
 process/normal_map_invert_y=false
-process/hdr_as_srgb=true
-process/hdr_clamp_exposure=true
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
