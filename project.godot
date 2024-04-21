@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Strategy Game"
+config/name="STRUGGLE & STARS"
 config/version="some preprototype i dunno"
 run/main_scene="res://scenes/title.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
@@ -72,4 +72,5 @@ cam_fullout={
 
 [rendering]
 
+renderer/rendering_method="mobile"
 environment/defaults/default_clear_color=Color(0.411765, 0.411765, 0.411765, 1)

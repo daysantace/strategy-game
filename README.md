@@ -1,2 +1,4 @@
-# Some random strategy game
-uh
+# STRUGGLE & STARS
+some strategy game
+
+idk i'll fix this later

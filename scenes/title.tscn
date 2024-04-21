@@ -1,16 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://dewr3bckn4o0x"]
+[gd_scene load_steps=2 format=3 uid="uid://dt4ngnre4o344"]
 
-[ext_resource type="Script" path="res://scripts/buttons.gd" id="1_i8wsp"]
+[ext_resource type="Script" path="res://scripts/title.gd" id="1_i8wsp"]
 
-[node name="Control" type="Control"]
+[node name="Title" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+script = ExtResource("1_i8wsp")
+
+[node name="version" type="Label" parent="."]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 364.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 16
+text = "Build 20240420"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -19,25 +27,40 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -51.0
-offset_top = -44.0
-offset_right = 51.0
-offset_bottom = 44.0
+offset_left = -178.0
+offset_top = -92.5
+offset_right = 178.0
+offset_bottom = 92.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i8wsp")
 
-[node name="title" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Game
-"
+theme_override_font_sizes/font_size = 32
+text = "STRUGGLE & STARS"
 horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="start" type="Button" parent="VBoxContainer"]
+[node name="buttons" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "Begin"
+size_flags_horizontal = 4
 
-[connection signal="pressed" from="VBoxContainer/start" to="VBoxContainer" method="_on_start_pressed"]
+[node name="start" type="Button" parent="VBoxContainer/buttons"]
+layout_mode = 2
+text = "Start"
+
+[node name="options" type="Button" parent="VBoxContainer/buttons"]
+layout_mode = 2
+text = "    Options    "
+
+[node name="credits" type="Button" parent="VBoxContainer/buttons"]
+layout_mode = 2
+text = "Credits"
+
+[node name="exit" type="Button" parent="VBoxContainer/buttons"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/buttons/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/buttons/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/buttons/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="VBoxContainer/buttons/exit" to="." method="_on_exit_pressed"]

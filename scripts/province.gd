@@ -1,13 +1,19 @@
+# province.gd
+# Copyleft (c) 2024 daysant - STRUGGLE & STARS
+# This file is licensed under the terms of the AGPL v3.0-or-later
+# daysant@proton.me
+
 extends Area2D
 
 var region_name=""
 var region_owner=""
+var region_id=0
 var colour
 
 func _ready():
-	log_message.debug(position)
+	z_index=region_id
 	set_colour()
-	
+
 func set_colour():
 	var country_dict = import_file("res://assets/map/countries.txt")
 
