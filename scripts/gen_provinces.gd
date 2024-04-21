@@ -11,12 +11,20 @@ var pixels_read = 0
 var pixels_to_report = 100000
 var total_pixels = 0
 var simplification_tolerance = 1.1 # for douglas-peucker for provinces
-
+var test = 0
 func _ready():
 	load_regions()
 
 func _process(_delta):
-	pass
+	for i in get_node("provinces").get_children():
+		for polygon in i.get_children():
+			for j in get_node("provinces").get_children():
+				for other_polygon in j.get_children():
+					if polygon.is_class("Polygon2D") and other_polygon.is_class("Polygon2D"):
+						polygon.color = Color(1,0,0,1)
+						other_polygon.color = Color(0,1,1,1)
+						await get_tree().create_timer(0.01).timeout 
+						other_polygon.color = Color(0.5,0.5,0.5,1)
 
 func load_regions():
 	var image = $map.get_texture().get_image()
