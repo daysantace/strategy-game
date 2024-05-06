@@ -9,9 +9,9 @@ var region_name=""
 var region_owner=""
 var region_id=0
 var colour
+var polygon: PackedVector2Array
 
 func _ready():
-	z_index=region_id
 	set_colour()
 
 func set_colour():
@@ -20,6 +20,7 @@ func set_colour():
 	if country_dict.has(region_owner):
 		var colour_str = country_dict[region_owner]["colour"]
 		colour = Color(colour_str.substr(1))
+		colour = Color(colour.r,colour.g,colour.b,1)
 	else:
 		log_message.warn("Region owner '" + region_owner + "' not found in country dictonary")
 		colour = Color8(128,128,128)
@@ -27,6 +28,11 @@ func set_colour():
 func _on_child_entered_tree(node):
 	if node.is_class("Polygon2D"):
 		node.color=colour
+	if region_id==20:
+		var polygon_node = Polygon2D.new()
+		polygon_node.polygon = polygon
+		polygon_node.color = colour
+		add_child(polygon_node)
 
 func _on_mouse_entered():
 	for node in get_children():

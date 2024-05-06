@@ -11,10 +11,10 @@ config_version=5
 [application]
 
 config/name="STRUGGLE & STARS"
-config/version="some preprototype i dunno"
+config/version="Build 20240505"
 run/main_scene="res://scenes/title.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/bg_color=Color(0.211765, 0.211765, 0.211765, 1)
+boot_splash/bg_color=Color(0, 0, 0, 1)
 
 [autoload]
 
@@ -73,4 +73,4 @@ cam_fullout={
 [rendering]
 
 renderer/rendering_method="mobile"
-environment/defaults/default_clear_color=Color(0.411765, 0.411765, 0.411765, 1)
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

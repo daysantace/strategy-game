@@ -6,7 +6,7 @@
 extends Control
 
 func _ready():
-	log_message.info("Version: Build 20240415")
+	log_message.info("Version: Build 20240505")
 	log_message.info("OS vendor: "+OS.get_name())
 	pass
 

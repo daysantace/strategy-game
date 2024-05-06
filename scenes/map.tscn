@@ -20,10 +20,3 @@ centered = false
 [node name="provinces" type="Node2D" parent="."]
 
 [node name="country-names" type="Node2D" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-color = Color(1, 0, 0, 1)
