@@ -12,6 +12,7 @@ var pixels_to_report = 100000
 var total_pixels = 0
 
 func _ready():
+	global.provinces_loaded = false
 	load_regions()
 	
 func _process(_delta):
@@ -36,6 +37,7 @@ func load_regions():
 		var region = load("res://scenes/province.tscn").instantiate()
 		region.region_name = regions_dict[info]["provname"]
 		region.region_owner = regions_dict[info]["owner"]
+		region.region_id = info.replace("#","").hex_to_int()
 		region.set_name(info)
 		$provinces.add_child(region)
 		log_message.info("Added region " + str(region) + " '" + region.region_name + "' owned by " + regions_dict[info]["owner"])
@@ -59,6 +61,9 @@ func load_regions():
 			region.add_child(region_collision)
 			region.add_child(region_polygon)
 			region.add_child(polyline)
+	
+	global.provinces_loaded = true
+	log_message.info("All provinces loaded")
 
 func get_polygons(image, region_colour, pixel_colour_dict):
 	var target_image = Image.create(image.get_size().x, image.get_size().y, false, Image.FORMAT_RGBA8)

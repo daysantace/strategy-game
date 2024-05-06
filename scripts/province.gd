@@ -9,11 +9,23 @@ var region_name=""
 var region_owner=""
 var region_id=0
 var colour
-var polygon: PackedVector2Array
+var gotten_centre = false
 
 func _ready():
 	set_colour()
 
+func _process(_delta):
+	if global.provinces_loaded and not gotten_centre:
+		gotten_centre = true
+		var centroid = get_centroid()
+		var label = Label.new()
+		label.position = Vector2(centroid.x-(/2),centroid.y-(/2))
+		label.text = region_name
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.z_index = 100
+		label.add_theme_font_size_override("_",7)
+		get_node("../../provnames").add_child(label)
+		
 func set_colour():
 	var country_dict = import_file("res://assets/map/countries.txt")
 
@@ -28,11 +40,6 @@ func set_colour():
 func _on_child_entered_tree(node):
 	if node.is_class("Polygon2D"):
 		node.color=colour
-	if region_id==20:
-		var polygon_node = Polygon2D.new()
-		polygon_node.polygon = polygon
-		polygon_node.color = colour
-		add_child(polygon_node)
 
 func _on_mouse_entered():
 	for node in get_children():
@@ -60,3 +67,39 @@ func import_file(filepath):
 	else:
 		log_message.error("Failed to open file: " + filepath)
 	return null
+
+func get_centroid():
+	var biggest_polygon
+	var biggest_polygon_area = 0
+	
+	for polygon in get_children():
+		if polygon.is_class("Polygon2D"):
+			var n = polygon.polygon.size()
+			var area = 0.0
+			var j = n - 1
+
+			for i in range(n):
+				var vertex_i = polygon.polygon[i]
+				var vertex_j = polygon.polygon[j]
+				area += (vertex_j.x + vertex_i.x) * (vertex_j.y - vertex_i.y)
+				j = i
+
+			area = abs(area) / 2.0
+			if area>biggest_polygon_area:
+				biggest_polygon_area = area
+				biggest_polygon = polygon
+				
+	var polygon = biggest_polygon.polygon
+	var area = biggest_polygon_area
+	
+	var centroid = Vector2(0, 0)
+	var num_vertices = polygon.size()
+
+	for i in range(num_vertices):
+		var current_vertex = polygon[i]
+		var next_vertex = polygon[(i + 1) % num_vertices]
+		var cross_product = current_vertex.cross(next_vertex)
+		centroid += (current_vertex + next_vertex) * cross_product
+	centroid /= (6 * area)
+	
+	return centroid
