@@ -20,3 +20,13 @@ centered = false
 [node name="provinces" type="Node2D" parent="."]
 
 [node name="country-names" type="Node2D" parent="."]
+
+[node name="water" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="water"]
+z_index = -2
+offset_left = -1161.0
+offset_top = -765.0
+offset_right = 2326.0
+offset_bottom = 1383.0
+color = Color(0.0705882, 0.105882, 0.196078, 1)

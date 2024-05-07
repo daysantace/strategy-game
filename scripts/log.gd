@@ -8,11 +8,11 @@ extends Node
 var logging_detail = 3
 
 func info(text):
-	if logging_detail>2:
+	if logging_detail>1:
 		print("INFO  | "+str(text))
 
 func debug(text):
-	if logging_detail>1:
+	if logging_detail>2:
 		print_rich("[color=#8888FF]DEBUG | At '"+str(Time.get_ticks_msec())+"' in '"+get_tree().current_scene.scene_file_path+"' by '"+get_stack()[1].source.get_file()+"' | "+str(text))
 	
 func warn(text):

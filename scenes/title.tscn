@@ -17,8 +17,8 @@ offset_left = 8.0
 offset_top = 7.0
 offset_right = 364.0
 offset_bottom = 30.0
-theme_override_font_sizes/font_size = 16
-text = "Build 20240505"
+theme_override_font_sizes/font_size = 20
+text = "Build 20240507"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -36,7 +36,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "STRUGGLE & STARS"
 horizontal_alignment = 1
 
@@ -46,18 +46,22 @@ size_flags_horizontal = 4
 
 [node name="start" type="Button" parent="VBoxContainer/buttons"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Start"
 
 [node name="options" type="Button" parent="VBoxContainer/buttons"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "    Options    "
 
 [node name="credits" type="Button" parent="VBoxContainer/buttons"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Credits"
 
 [node name="exit" type="Button" parent="VBoxContainer/buttons"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Exit"
 
 [connection signal="pressed" from="VBoxContainer/buttons/start" to="." method="_on_start_pressed"]

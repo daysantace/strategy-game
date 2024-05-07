@@ -50,6 +50,12 @@ func load_regions():
 			var region_collision = CollisionPolygon2D.new()
 			var region_polygon = Polygon2D.new()
 			var polyline = Line2D.new()
+			var sealine = Line2D.new()
+			
+			region.add_child(region_collision)
+			region.add_child(region_polygon)
+			region.add_child(polyline)
+			region.add_child(sealine)
 			
 			region_collision.polygon = polygon
 			region_polygon.polygon = polygon
@@ -57,10 +63,13 @@ func load_regions():
 			polyline.points = polygon
 			polyline.closed = true
 			polyline.width = 1.0
+			polyline.z_index = 1000
 			
-			region.add_child(region_collision)
-			region.add_child(region_polygon)
-			region.add_child(polyline)
+			sealine.points = polygon
+			sealine.closed = true
+			sealine.default_color = Color(0.25,0.25,0.4,1)
+			sealine.width = 20.0
+			sealine.z_index = -1
 	
 	global.provinces_loaded = true
 	log_message.info("All provinces loaded")

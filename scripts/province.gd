@@ -18,14 +18,14 @@ func _process(_delta):
 	if global.provinces_loaded and not gotten_centre:
 		gotten_centre = true
 		var centroid = get_centroid()
-		var label = Label.new()
-		label.position = Vector2(centroid.x-(/2),centroid.y-(/2))
-		label.text = region_name
-		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.z_index = 100
-		label.add_theme_font_size_override("_",7)
-		get_node("../../provnames").add_child(label)
+		$label.text = region_name
+		$label.z_index = z_index+1
+		$label.position = Vector2(centroid.x-($label.get_minimum_size().x/2),centroid.y-($label.get_minimum_size().y/2))
 		
+	if global.zoom_level<2:
+		$label.visible = false
+	else:
+		$label.visible = true
 func set_colour():
 	var country_dict = import_file("res://assets/map/countries.txt")
 

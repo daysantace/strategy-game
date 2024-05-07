@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cr6cna1qn3crn"]
+
+[ext_resource type="FontFile" uid="uid://bvq1mv006ou60" path="res://assets/font.ttf" id="1_ppff7"]
+
+[resource]
+default_base_scale = 0.01
+default_font = ExtResource("1_ppff7")

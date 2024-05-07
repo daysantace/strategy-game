@@ -78,5 +78,9 @@
 	"#000014":{
 		"provname":"Kangwon",
 		"owner":"CHSN"
+	},
+	"#000015":{
+		"provname":"Niigata",
+		"owner":"NIHN"
 	}
 }
