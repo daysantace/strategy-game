@@ -18,7 +18,7 @@ offset_top = 7.0
 offset_right = 364.0
 offset_bottom = 30.0
 theme_override_font_sizes/font_size = 20
-text = "Build 20240507"
+text = "Build 20240512"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -37,8 +37,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "STRUGGLE & STARS"
-horizontal_alignment = 1
+text = "STRUGGLE AND STARS"
 
 [node name="buttons" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

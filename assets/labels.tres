@@ -1,7 +1,20 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cr6cna1qn3crn"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cr6cna1qn3crn"]
 
 [ext_resource type="FontFile" uid="uid://bvq1mv006ou60" path="res://assets/font.ttf" id="1_ppff7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fjtvf"]
 
 [resource]
 default_base_scale = 0.01
 default_font = ExtResource("1_ppff7")
+default_font_size = 160
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 16
+Label/styles/normal = SubResource("StyleBoxEmpty_fjtvf")

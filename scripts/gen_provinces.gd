@@ -39,6 +39,9 @@ func load_regions():
 		region.region_owner = regions_dict[info]["owner"]
 		region.region_id = info.replace("#","").hex_to_int()
 		region.set_name(info)
+		
+		var label = load("res://scenes/province_label.tscn").instantiate()
+		
 		$provinces.add_child(region)
 		log_message.info("Added region " + str(region) + " '" + region.region_name + "' owned by " + regions_dict[info]["owner"])
 		
@@ -68,7 +71,7 @@ func load_regions():
 			sealine.points = polygon
 			sealine.closed = true
 			sealine.default_color = Color(0.25,0.25,0.4,1)
-			sealine.width = 20.0
+			sealine.width = 25.0
 			sealine.z_index = -1
 	
 	global.provinces_loaded = true

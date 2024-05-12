@@ -23,7 +23,7 @@ func _process(delta):
 		pan_direction.y = 1
 	
 	if acceleration<500:
-		acceleration+=100
+		acceleration+=50
 	
 	if pan_direction.y==0 and pan_direction.x==0:
 		acceleration=0

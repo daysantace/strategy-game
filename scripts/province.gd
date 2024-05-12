@@ -18,14 +18,51 @@ func _process(_delta):
 	if global.provinces_loaded and not gotten_centre:
 		gotten_centre = true
 		var centroid = get_centroid()
-		$label.text = region_name
-		$label.z_index = z_index+1
-		$label.position = Vector2(centroid.x-($label.get_minimum_size().x/2),centroid.y-($label.get_minimum_size().y/2))
+		var convex_hull: PackedVector2Array
 		
-	if global.zoom_level<2:
-		$label.visible = false
-	else:
-		$label.visible = true
+		for polygon in get_children():
+			if polygon.is_class("Polygon2D"):
+				convex_hull.append_array(polygon.polygon)
+			else:
+				continue
+		convex_hull = Geometry2D.convex_hull(convex_hull)
+		
+		var point_a
+		var point_b
+		var max_distance = 0
+		for i in convex_hull:
+			for j in convex_hull:
+				var distance = sqrt(((j.x-i.x)**2)+((j.y-i.y)**2))
+				if distance>max_distance:
+					max_distance = distance
+					point_a = i
+					point_b = j
+		
+		var furthest_line = Line2D.new()
+		furthest_line.points = [point_a,point_b]
+		
+		var curve = Line2D.new()
+		
+		var t = 0.0
+		while 1 >= t:
+			t+=0.005
+			var q0 = point_a.lerp(centroid, t)
+			var q1 = centroid.lerp(point_b, t)
+			var r = q0.lerp(q1, t)
+			curve.add_point(r)
+		
+		var i = 0
+		var n = region_name.length()-1
+		
+		while i <= n:
+			var point = curve.points[snapped((199/n)*i,1)]
+			var rect = ColorRect.new()
+			rect.color=Color(1,1,0,1)
+			rect.size=Vector2(3,3)
+			rect.position = point
+			add_child(rect)
+			i+=1
+
 func set_colour():
 	var country_dict = import_file("res://assets/map/countries.txt")
 
