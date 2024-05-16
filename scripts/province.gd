@@ -9,59 +9,19 @@ var region_name=""
 var region_owner=""
 var region_id=0
 var colour
-var gotten_centre = false
+var init_already_done = false
+var province_text_theme = preload("res://assets/themes/province_label.tres")
+var mouse_is_over = false
+var selected = false
 
 func _ready():
 	set_colour()
 
 func _process(_delta):
-	if global.provinces_loaded and not gotten_centre:
-		gotten_centre = true
-		var centroid = get_centroid()
-		var convex_hull: PackedVector2Array
-		
-		for polygon in get_children():
-			if polygon.is_class("Polygon2D"):
-				convex_hull.append_array(polygon.polygon)
-			else:
-				continue
-		convex_hull = Geometry2D.convex_hull(convex_hull)
-		
-		var point_a
-		var point_b
-		var max_distance = 0
-		for i in convex_hull:
-			for j in convex_hull:
-				var distance = sqrt(((j.x-i.x)**2)+((j.y-i.y)**2))
-				if distance>max_distance:
-					max_distance = distance
-					point_a = i
-					point_b = j
-		
-		var furthest_line = Line2D.new()
-		furthest_line.points = [point_a,point_b]
-		
-		var curve = Line2D.new()
-		
-		var t = 0.0
-		while 1 >= t:
-			t+=0.005
-			var q0 = point_a.lerp(centroid, t)
-			var q1 = centroid.lerp(point_b, t)
-			var r = q0.lerp(q1, t)
-			curve.add_point(r)
-		
-		var i = 0
-		var n = region_name.length()-1
-		
-		while i <= n:
-			var point = curve.points[snapped((199/n)*i,1)]
-			var rect = ColorRect.new()
-			rect.color=Color(1,1,0,1)
-			rect.size=Vector2(3,3)
-			rect.position = point
-			add_child(rect)
-			i+=1
+	if mouse_is_over:
+		global.mouse_over_province = true
+	else:
+		pass
 
 func set_colour():
 	var country_dict = import_file("res://assets/map/countries.txt")
@@ -79,19 +39,32 @@ func _on_child_entered_tree(node):
 		node.color=colour
 
 func _on_mouse_entered():
+	mouse_is_over = true
+	global.tooltip_text_province = region_name
 	for node in get_children():
 		if node.is_class("Polygon2D"):
 			node.color=Color(colour.r+0.075,colour.g+0.075,colour.b+0.075,1)
 
 func _on_mouse_exited():
+	mouse_is_over = false
+	global.mouse_over_province = false
 	for node in get_children():
 		if node.is_class("Polygon2D"):
 			node.color=colour
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		pass
-
+		selected = !selected
+		if selected:
+			for node in get_children():
+				if node.is_class("Line2D"):
+						node.default_color=Color(1,1,0,1)
+						node.z_index=2
+		else:
+			for node in get_children():
+				if node.is_class("Line2D"):
+						node.default_color=Color(1,1,1,1)
+						node.z_index=0
 func import_file(filepath):
 	var file = FileAccess.open(filepath, FileAccess.READ)
 	if file != null:
@@ -104,39 +77,3 @@ func import_file(filepath):
 	else:
 		log_message.error("Failed to open file: " + filepath)
 	return null
-
-func get_centroid():
-	var biggest_polygon
-	var biggest_polygon_area = 0
-	
-	for polygon in get_children():
-		if polygon.is_class("Polygon2D"):
-			var n = polygon.polygon.size()
-			var area = 0.0
-			var j = n - 1
-
-			for i in range(n):
-				var vertex_i = polygon.polygon[i]
-				var vertex_j = polygon.polygon[j]
-				area += (vertex_j.x + vertex_i.x) * (vertex_j.y - vertex_i.y)
-				j = i
-
-			area = abs(area) / 2.0
-			if area>biggest_polygon_area:
-				biggest_polygon_area = area
-				biggest_polygon = polygon
-				
-	var polygon = biggest_polygon.polygon
-	var area = biggest_polygon_area
-	
-	var centroid = Vector2(0, 0)
-	var num_vertices = polygon.size()
-
-	for i in range(num_vertices):
-		var current_vertex = polygon[i]
-		var next_vertex = polygon[(i + 1) % num_vertices]
-		var cross_product = current_vertex.cross(next_vertex)
-		centroid += (current_vertex + next_vertex) * cross_product
-	centroid /= (6 * area)
-	
-	return centroid

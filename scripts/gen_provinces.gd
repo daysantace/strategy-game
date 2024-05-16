@@ -58,19 +58,19 @@ func load_regions():
 			region.add_child(region_collision)
 			region.add_child(region_polygon)
 			region.add_child(polyline)
-			region.add_child(sealine)
 			
 			region_collision.polygon = polygon
 			region_polygon.polygon = polygon
 			
 			polyline.points = polygon
 			polyline.closed = true
-			polyline.width = 1.0
-			polyline.z_index = 1000
+			polyline.width = 1.5
+			polyline.z_index = 1
 			
+			$shore.add_child(sealine)
 			sealine.points = polygon
 			sealine.closed = true
-			sealine.default_color = Color(0.25,0.25,0.4,1)
+			sealine.default_color = Color(0.255,0.576,0.824)
 			sealine.width = 25.0
 			sealine.z_index = -1
 	
