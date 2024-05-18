@@ -18,3 +18,4 @@ Label/constants/shadow_offset_y = 1
 Label/constants/shadow_outline_size = 1
 Label/font_sizes/font_size = 16
 Label/styles/normal = SubResource("StyleBoxEmpty_fjtvf")
+RichTextLabel/font_sizes/normal_font_size = 16

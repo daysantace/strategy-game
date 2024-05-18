@@ -1,86 +1,107 @@
 {
 	"#000001":{
 		"provname":"North Sakhalin",
-		"owner":"RSYA"
+		"owner":"RSYA",
+		"claimants":""
 	},
 	"#000002":{
 		"provname":"South Sakhalin",
-		"owner":"RSYA"
+		"owner":"RSYA",
+		"claimants":""
 	},
 	"#000003":{
 		"provname":"Hokkaido",
-		"owner":"NIHN"
+		"owner":"NIHN",
+		"claimants":""
 	},
 	"#000004":{
 		"provname":"West Kurils",
-		"owner":"RSYA"
+		"owner":"RSYA",
+		"claimants":""
 	},
 	"#000005":{
 		"provname":"East Kurils",
-		"owner":"RSYA"
+		"owner":"RSYA",
+		"claimants":"NIHN"
 	},
 	"#000006":{
 		"provname":"Tohoku",
-		"owner":"NIHN"
+		"owner":"NIHN",
+		"claimants":""
 	},
 	"#000007":{
 		"provname":"Kanto",
-		"owner":"NIHN"
+		"owner":"NIHN",
+		"claimants":""
 	},
 	"#000008":{
 		"provname":"Chubu",
-		"owner":"NIHN"
+		"owner":"NIHN",
+		"claimants":""
 	},
 	"#000009":{
 		"provname":"Kansai",
-		"owner":"NIHN"
+		"owner":"NIHN",
+		"claimants":""
 	},
 	"#00000a":{
 		"provname":"Chugoku",
-		"owner":"NIHN"
+		"owner":"NIHN",
+		"claimants":""
 	},
 	"#00000b":{
 		"provname":"Shikoku",
-		"owner":"NIHN"
+		"owner":"NIHN",
+		"claimants":""
 	},
 	"#00000c":{
 		"provname":"Kyushu",
-		"owner":"NIHN"
+		"owner":"NIHN",
+		"claimants":""
 	},
 	"#00000d":{
 		"provname":"Honam",
-		"owner":"HNGK"
+		"owner":"HNGK",
+		"claimants":"CHSN"
 	},
 	"#00000e":{
 		"provname":"Gyeongsang",
-		"owner":"HNGK"
+		"owner":"HNGK",
+		"claimants":"CHSN"
 	},
 	"#00000f":{
 		"provname":"Chungcheong",
-		"owner":"HNGK"
+		"owner":"HNGK",
+		"claimants":"CHSN"
 	},
 	"#000010":{
 		"provname":"Gyeonggi",
-		"owner":"HNGK"
+		"owner":"HNGK",
+		"claimants":"CHSN"
 	},
 	"#000011":{
 		"provname":"Hamgyong",
-		"owner":"CHSN"
+		"owner":"CHSN",
+		"claimants":"HNGK"
 	},
 	"#000012":{
 		"provname":"Pyongan",
-		"owner":"CHSN"
+		"owner":"CHSN",
+		"claimants":"HNGK"
 	},
 	"#000013":{
 		"provname":"Hwanghae",
-		"owner":"CHSN"
+		"owner":"CHSN",
+		"claimants":"HNGK"
 	},
 	"#000014":{
 		"provname":"Kangwon",
-		"owner":"CHSN"
+		"owner":"CHSN",
+		"claimants":"HNGK"
 	},
 	"#000015":{
 		"provname":"Niigata",
-		"owner":"NIHN"
+		"owner":"NIHN",
+		"claimants":""
 	}
 }

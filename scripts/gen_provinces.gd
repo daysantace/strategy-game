@@ -40,8 +40,6 @@ func load_regions():
 		region.region_id = info.replace("#","").hex_to_int()
 		region.set_name(info)
 		
-		var label = load("res://scenes/province_label.tscn").instantiate()
-		
 		$provinces.add_child(region)
 		log_message.info("Added region " + str(region) + " '" + region.region_name + "' owned by " + regions_dict[info]["owner"])
 		

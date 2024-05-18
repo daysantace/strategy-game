@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="STRUGGLE & STARS"
-config/version="Build 20240516s"
+config/version="Build 20240517s"
 run/main_scene="res://scenes/title.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)

@@ -9,10 +9,12 @@ var region_name=""
 var region_owner=""
 var region_id=0
 var colour
-var init_already_done = false
-var province_text_theme = preload("res://assets/themes/province_label.tres")
 var mouse_is_over = false
 var selected = false
+var gotten_centre = false
+var region_owner_name=""
+var claimants = ""
+var country_dict = import_file("res://assets/map/countries.txt")
 
 func _ready():
 	set_colour()
@@ -22,9 +24,17 @@ func _process(_delta):
 		global.mouse_over_province = true
 	else:
 		pass
+		
+	if global.provinces_loaded and not gotten_centre:
+		gotten_centre = true
+		var biggest_polygon = get_biggest_polygon()
+		var incenter = find_incenter(biggest_polygon)
+		var army = load("res://scenes/army.tscn").instantiate()
+		add_child(army)
+		army.position = incenter
 
 func set_colour():
-	var country_dict = import_file("res://assets/map/countries.txt")
+	region_owner_name = country_dict[region_owner]["name"]
 
 	if country_dict.has(region_owner):
 		var colour_str = country_dict[region_owner]["colour"]
@@ -52,19 +62,29 @@ func _on_mouse_exited():
 		if node.is_class("Polygon2D"):
 			node.color=colour
 
-func _on_input_event(viewport, event, shape_idx):
+func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		selected = !selected
+		if mouse_is_over:
+			selected = true
+		else:
+			selected = false
+			
 		if selected:
 			for node in get_children():
 				if node.is_class("Line2D"):
-						node.default_color=Color(1,1,0,1)
-						node.z_index=2
+					node.default_color=Color(1,1,0,1)
+					node.z_index=2
+					await get_tree().create_timer(0.001).timeout
+					global.selected_province_name = region_name
+					global.selected_country_name = region_owner_name
 		else:
 			for node in get_children():
 				if node.is_class("Line2D"):
-						node.default_color=Color(1,1,1,1)
-						node.z_index=0
+					node.default_color=Color(1,1,1,1)
+					node.z_index=0
+					global.selected_province_name = false
+					global.selected_province_claimants = ""
+
 func import_file(filepath):
 	var file = FileAccess.open(filepath, FileAccess.READ)
 	if file != null:
@@ -77,3 +97,123 @@ func import_file(filepath):
 	else:
 		log_message.error("Failed to open file: " + filepath)
 	return null
+
+# WELCOME TO THE SEA OF AI GENERATED NONSENSE BECAUSE I HAVE NO CLUE HOW GEOMETRY WORKS
+
+func distance_point_to_segment(point: Vector2, segment_start: Vector2, segment_end: Vector2) -> float:
+	var segment_vector = segment_end - segment_start
+	var point_vector = point - segment_start
+	var t = point_vector.dot(segment_vector) / segment_vector.length_squared()
+	t = clamp(t, 0.0, 1.0)
+	var projection = segment_start + t * segment_vector
+	return point.distance_to(projection)
+
+func distance_to_polygon_edges(point: Vector2, polygon: PackedVector2Array) -> float:
+	var min_distance = INF
+	for i in range(polygon.size()):
+		var segment_start = polygon[i]
+		var segment_end = polygon[(i + 1) % polygon.size()]
+		var distance = distance_point_to_segment(point, segment_start, segment_end)
+		min_distance = min(min_distance, distance)
+	return min_distance
+
+func initial_incenter_estimate(polygon: PackedVector2Array) -> Vector2:
+	var bounds = get_bounds(polygon)
+	var min_x = bounds.position.x
+	var min_y = bounds.position.y
+	var max_x = bounds.position.x + bounds.size.x
+	var max_y = bounds.position.y + bounds.size.y
+	
+	var grid_size = 10.0
+	var best_point = Vector2()
+	var max_distance = 0.0
+	
+	for x in range(min_x, max_x, grid_size):
+		for y in range(min_y, max_y, grid_size):
+			var point = Vector2(x, y)
+			if Geometry2D.is_point_in_polygon(point, polygon):
+				var distance = distance_to_polygon_edges(point, polygon)
+				if distance > max_distance:
+					max_distance = distance
+					best_point = point
+					
+	return best_point
+
+func refine_incenter(polygon: PackedVector2Array, initial_point: Vector2) -> Vector2:
+	var point = initial_point
+	var step_size = 1.0
+	var improvement = true
+	
+	while improvement:
+		improvement = false
+		var best_point = point
+		var max_distance = distance_to_polygon_edges(point, polygon)
+		
+		for dx in [-step_size, 0, step_size]:
+			for dy in [-step_size, 0, step_size]:
+				if dx == 0 and dy == 0:
+					continue
+				var candidate = point + Vector2(dx, dy)
+				if Geometry2D.is_point_in_polygon(point, polygon):
+					var distance = distance_to_polygon_edges(candidate, polygon)
+					if distance > max_distance:
+						max_distance = distance
+						best_point = candidate
+						improvement = true
+						
+		point = best_point
+		
+	return point
+	
+func find_incenter(polygon: PackedVector2Array) -> Vector2:
+	var initial_point = initial_incenter_estimate(polygon)
+	return refine_incenter(polygon, initial_point)
+
+func get_biggest_polygon():
+	var biggest_polygon = null
+	var biggest_polygon_area = 0
+
+	for polygon in get_children():
+		if polygon.is_class("Polygon2D"):
+			var n = polygon.polygon.size()
+			
+			if n == 0:
+				continue
+			
+			var area = 0.0
+			var j = n - 1
+
+			for i in range(n):
+				var vertex_i = polygon.polygon[i]
+				var vertex_j = polygon.polygon[j]
+				area += (vertex_j.x + vertex_i.x) * (vertex_j.y - vertex_i.y)
+				j = i
+
+			area = abs(area) / 2.0
+
+			if area > biggest_polygon_area:
+				biggest_polygon_area = area
+				biggest_polygon = polygon
+
+	if biggest_polygon == null:
+		log_message.error("Could not find Polygon2D")
+	else:
+		return biggest_polygon.polygon
+
+func get_bounds(polygon: PackedVector2Array) -> Rect2:
+	var min_x = INF
+	var min_y = INF
+	var max_x = -INF
+	var max_y = -INF
+
+	for point in polygon:
+		if point.x < min_x:
+			min_x = point.x
+		if point.y < min_y:
+			min_y = point.y
+		if point.x > max_x:
+			max_x = point.x
+		if point.y > max_y:
+			max_y = point.y
+
+	return Rect2(Vector2(min_x, min_y), Vector2(max_x - min_x, max_y - min_y))
