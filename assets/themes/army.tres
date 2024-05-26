@@ -1,13 +1,18 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cr6cna1qn3crn"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c05xqk7sjf6b3"]
 
-[ext_resource type="FontFile" uid="uid://bvq1mv006ou60" path="res://assets/font.ttf" id="1_ppff7"]
+[ext_resource type="FontFile" uid="uid://bvq1mv006ou60" path="res://assets/font.ttf" id="1_stasm"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fjtvf"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gvstd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dn8e0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tmwv3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qyyf8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t5tve"]
 
 [resource]
-default_base_scale = 0.01
-default_font = ExtResource("1_ppff7")
-default_font_size = 160
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
@@ -24,14 +29,10 @@ Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 4
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
-Label/colors/font_color = Color(1, 1, 1, 1)
-Label/colors/font_outline_color = Color(1, 1, 1, 1)
-Label/colors/font_shadow_color = Color(0, 0, 0, 0)
-Label/constants/line_spacing = 3
-Label/constants/outline_size = 0
-Label/constants/shadow_offset_x = 1
-Label/constants/shadow_offset_y = 1
-Label/constants/shadow_outline_size = 1
-Label/font_sizes/font_size = 16
-Label/styles/normal = SubResource("StyleBoxEmpty_fjtvf")
-RichTextLabel/font_sizes/normal_font_size = 16
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_stasm")
+Button/styles/disabled = SubResource("StyleBoxEmpty_gvstd")
+Button/styles/focus = SubResource("StyleBoxEmpty_dn8e0")
+Button/styles/hover = SubResource("StyleBoxEmpty_tmwv3")
+Button/styles/normal = SubResource("StyleBoxEmpty_qyyf8")
+Button/styles/pressed = SubResource("StyleBoxEmpty_t5tve")

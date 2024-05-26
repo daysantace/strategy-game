@@ -14,24 +14,59 @@ var selected = false
 var gotten_centre = false
 var region_owner_name=""
 var claimants = ""
+var bordering = []
 var country_dict = import_file("res://assets/map/countries.txt")
+
+var biggest_polygon
+var incenter
 
 func _ready():
 	set_colour()
 
 func _process(_delta):
 	if mouse_is_over:
-		global.mouse_over_province = true
+		GlobalVar.mouse_over_province = true
 	else:
 		pass
 		
-	if global.provinces_loaded and not gotten_centre:
+	if GlobalVar.provinces_loaded and not gotten_centre:
 		gotten_centre = true
-		var biggest_polygon = get_biggest_polygon()
-		var incenter = find_incenter(biggest_polygon)
-		var army = load("res://scenes/army.tscn").instantiate()
-		add_child(army)
-		army.position = incenter
+		biggest_polygon = get_biggest_polygon()
+		incenter = find_incenter()
+		
+		for i in get_children():
+			if i.is_class("Polygon2D"):
+				var offset_polygon
+				if !Geometry2D.offset_polygon(i.polygon,4.0).is_empty():
+					offset_polygon = Geometry2D.offset_polygon(i.polygon,4.0)[0]
+				else:
+					continue
+				for j in $"..".get_children():
+					for k in j.get_children():
+						if k.is_class("Polygon2D"):
+							if !Geometry2D.offset_polygon(k.polygon,4.0).is_empty() and !(k==i):
+								var other_polygon = Geometry2D.offset_polygon(k.polygon,4.0)[0]
+								if !Geometry2D.intersect_polygons(offset_polygon,other_polygon).is_empty():
+									if !bordering.has(j.region_id):
+										bordering.append(j.region_id)
+									else:
+										continue
+							else:
+								continue
+						else:
+							continue
+		for i in bordering:
+			var test = Line2D.new()
+			test.add_point(incenter)
+			test.add_point(get_province_by_id(i).find_incenter())
+			test.default_color = Color(1,0,0,1)
+			test.width = 2.0
+			add_child(test)
+			
+func get_province_by_id(id):
+	for i in $"..".get_children():
+		if i.name == id:
+			return i
 
 func set_colour():
 	region_owner_name = country_dict[region_owner]["name"]
@@ -41,7 +76,7 @@ func set_colour():
 		colour = Color(colour_str.substr(1))
 		colour = Color(colour.r,colour.g,colour.b,1)
 	else:
-		log_message.warn("Region owner '" + region_owner + "' not found in country dictonary")
+		Logger.warn("Region owner '" + region_owner + "' not found in country dictonary")
 		colour = Color8(128,128,128)
 	
 func _on_child_entered_tree(node):
@@ -50,14 +85,14 @@ func _on_child_entered_tree(node):
 
 func _on_mouse_entered():
 	mouse_is_over = true
-	global.tooltip_text_province = region_name
+	GlobalVar.tooltip_text_province = region_name
 	for node in get_children():
 		if node.is_class("Polygon2D"):
 			node.color=Color(colour.r+0.075,colour.g+0.075,colour.b+0.075,1)
 
 func _on_mouse_exited():
 	mouse_is_over = false
-	global.mouse_over_province = false
+	GlobalVar.mouse_over_province = false
 	for node in get_children():
 		if node.is_class("Polygon2D"):
 			node.color=colour
@@ -75,15 +110,13 @@ func _unhandled_input(event):
 					node.default_color=Color(1,1,0,1)
 					node.z_index=2
 					await get_tree().create_timer(0.001).timeout
-					global.selected_province_name = region_name
-					global.selected_country_name = region_owner_name
+					GlobalVar.selected_province = self
 		else:
 			for node in get_children():
 				if node.is_class("Line2D"):
 					node.default_color=Color(1,1,1,1)
 					node.z_index=0
-					global.selected_province_name = false
-					global.selected_province_claimants = ""
+					GlobalVar.selected_province = null
 
 func import_file(filepath):
 	var file = FileAccess.open(filepath, FileAccess.READ)
@@ -91,14 +124,14 @@ func import_file(filepath):
 		var file_contents = file.get_as_text()
 		var parsed_json = JSON.parse_string(file_contents.replace("_", " "))
 		if parsed_json == null:
-			log_message.error("Error parsing JSON file: " + filepath)
+			Logger.error("Error parsing JSON file: " + filepath)
 		else:
 			return parsed_json
 	else:
-		log_message.error("Failed to open file: " + filepath)
+		Logger.error("Failed to open file: " + filepath)
 	return null
 
-# WELCOME TO THE SEA OF AI GENERATED NONSENSE BECAUSE I HAVE NO CLUE HOW GEOMETRY WORKS
+# welcome to the sea of ai generated nonsense because i have no clue how geometry works
 
 func distance_point_to_segment(point: Vector2, segment_start: Vector2, segment_end: Vector2) -> float:
 	var segment_vector = segment_end - segment_start
@@ -165,12 +198,12 @@ func refine_incenter(polygon: PackedVector2Array, initial_point: Vector2) -> Vec
 		
 	return point
 	
-func find_incenter(polygon: PackedVector2Array) -> Vector2:
-	var initial_point = initial_incenter_estimate(polygon)
-	return refine_incenter(polygon, initial_point)
+func find_incenter():
+	var initial_point = initial_incenter_estimate(get_biggest_polygon())
+	return refine_incenter(get_biggest_polygon(), initial_point)
 
 func get_biggest_polygon():
-	var biggest_polygon = null
+	biggest_polygon = null
 	var biggest_polygon_area = 0
 
 	for polygon in get_children():
@@ -196,7 +229,7 @@ func get_biggest_polygon():
 				biggest_polygon = polygon
 
 	if biggest_polygon == null:
-		log_message.error("Could not find Polygon2D")
+		Logger.error("Could not find Polygon2D")
 	else:
 		return biggest_polygon.polygon
 

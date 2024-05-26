@@ -6,8 +6,8 @@
 extends Control
 
 func _ready():
-	log_message.info("Version: Build 20240517")
-	log_message.info("OS vendor: "+OS.get_name())
+	Logger.info("Version: Build 20240526")
+	Logger.info("OS vendor: "+OS.get_name())
 	pass
 
 func _process(delta):
@@ -20,7 +20,7 @@ func _on_exit_pressed():
 	get_tree().quit()
 
 func _on_credits_pressed():
-	log_message.info("This has not been implemented yet")
+	Logger.info("This has not been implemented yet")
 
 func _on_options_pressed():
-	log_message.info("This has not been implemented yet")
+	Logger.info("This has not been implemented yet")

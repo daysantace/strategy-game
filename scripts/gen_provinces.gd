@@ -12,36 +12,37 @@ var pixels_to_report = 100000
 var total_pixels = 0
 
 func _ready():
-	global.provinces_loaded = false
+	GlobalVar.provinces_loaded = false
 	load_regions()
 	
 func _process(_delta):
 	pass
 
 func load_regions():
-	var image = $map.get_texture().get_image()
+	var image = $"../map".get_texture().get_image()
 	var pixel_colour_dict = get_pixel_colour_dict(image)
 	var regions_dict = import_file("res://assets/map/provinces.txt")
 	
 	if regions_dict == null:
-		log_message.error("Regions dictionary file not found or failed to parse")
+		Logger.error("Regions dictionary file not found or failed to parse")
 		return
 		
 	if image == null:
-		log_message.error("Map image not found")
+		Logger.error("Map image not found")
 		return
 	
-	log_message.info("Map loaded")
+	Logger.info("Map loaded")
 	
 	for info in regions_dict:
 		var region = load("res://scenes/province.tscn").instantiate()
+		
 		region.region_name = regions_dict[info]["provname"]
 		region.region_owner = regions_dict[info]["owner"]
-		region.region_id = info.replace("#","").hex_to_int()
+		region.region_id = info
 		region.set_name(info)
 		
-		$provinces.add_child(region)
-		log_message.info("Added region " + str(region) + " '" + region.region_name + "' owned by " + regions_dict[info]["owner"])
+		add_child(region)
+		Logger.info("Added region " + str(region) + " '" + region.region_name + "' owned by " + regions_dict[info]["owner"])
 		
 		var polygons = get_polygons(image, info, pixel_colour_dict)
 
@@ -65,21 +66,20 @@ func load_regions():
 			polyline.width = 1.5
 			polyline.z_index = 1
 			
-			$shore.add_child(sealine)
+			$"../shore".add_child(sealine)
 			sealine.points = polygon
 			sealine.closed = true
 			sealine.default_color = Color(0.255,0.576,0.824)
 			sealine.width = 25.0
 			sealine.z_index = -1
-	
-	global.provinces_loaded = true
-	log_message.info("All provinces loaded")
 
+	GlobalVar.provinces_loaded = true
+	Logger.info("All provinces loaded")
+							
 func get_polygons(image, region_colour, pixel_colour_dict):
 	var target_image = Image.create(image.get_size().x, image.get_size().y, false, Image.FORMAT_RGBA8)
 	for value in pixel_colour_dict[region_colour]:
 		target_image.set_pixel(value.x, value.y, Color.WHITE)
-
 	var bitmap = BitMap.new()
 	bitmap.create_from_image_alpha(target_image)
 	var polygons = bitmap.opaque_to_polygons(Rect2(Vector2(0, 0), bitmap.get_size()), 0.1)
@@ -98,7 +98,7 @@ func get_pixel_colour_dict(image):
 			pixel_colour_dict[pixel_colour].append(Vector2(x, y))
 			pixels_read += 1
 			if pixels_read % pixels_to_report == 0:
-				log_message.info(str(pixels_read) + "/" + str(image.get_width() * image.get_height()) + " pixels read")
+				Logger.info(str(pixels_read) + "/" + str(image.get_width() * image.get_height()) + " pixels read")
 
 	return pixel_colour_dict
 
@@ -107,7 +107,7 @@ func import_file(filepath):
 	if file != null:
 		return JSON.parse_string(file.get_as_text().replace("_", " "))
 	else:
-		log_message.error("Province map " + image_source + " not found")
+		Logger.error("Province map " + image_source + " not found")
 		return null
 
 func fix_polygon(polygon):
@@ -126,7 +126,7 @@ func fix_polygon(polygon):
 	else:
 		return []
 
-	for i in $provinces.get_children():
+	for i in get_children():
 		for other_polygon in i.get_children():
 			if other_polygon.is_class("Polygon2D") and other_polygon.polygon!=new_polygon:
 				var clip = Polygon2D.new()

@@ -32,10 +32,10 @@ func _process(delta):
 		diag_fix=sqrt(2)
 	
 	if Input.is_action_just_pressed("cam_in"):
-		global.zoom_level-=0.05
+		GlobalVar.zoom_level-=0.05
 	if Input.is_action_just_pressed("cam_out"):
-		global.zoom_level+=0.05
-	global.zoom_level=clamp(global.zoom_level,0.1,5)
-	zoom=Vector2(global.zoom_level,global.zoom_level)
+		GlobalVar.zoom_level+=0.05
+	GlobalVar.zoom_level=clamp(GlobalVar.zoom_level,0.1,5)
+	zoom=Vector2(GlobalVar.zoom_level,GlobalVar.zoom_level)
 	
-	position += ((pan_direction * (100+acceleration) * delta)/diag_fix)/global.zoom_level
+	position += ((pan_direction * (100+acceleration) * delta)/diag_fix)/GlobalVar.zoom_level
