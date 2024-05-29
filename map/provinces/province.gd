@@ -15,7 +15,7 @@ var gotten_centre = false
 var region_owner_name=""
 var claimants = ""
 var bordering = []
-var country_dict = import_file("res://assets/map/countries.txt")
+var country_dict = import_file("res://map/countries.txt")
 
 var biggest_polygon
 var incenter
@@ -25,11 +25,11 @@ func _ready():
 
 func _process(_delta):
 	if mouse_is_over:
-		GlobalVar.mouse_over_province = true
+		$"..".mouse_over_province = true
 	else:
 		pass
 		
-	if GlobalVar.provinces_loaded and not gotten_centre:
+	if $"..".provinces_loaded and not gotten_centre:
 		gotten_centre = true
 		biggest_polygon = get_biggest_polygon()
 		incenter = find_incenter()
@@ -55,13 +55,6 @@ func _process(_delta):
 								continue
 						else:
 							continue
-		for i in bordering:
-			var test = Line2D.new()
-			test.add_point(incenter)
-			test.add_point(get_province_by_id(i).find_incenter())
-			test.default_color = Color(1,0,0,1)
-			test.width = 2.0
-			add_child(test)
 			
 func get_province_by_id(id):
 	for i in $"..".get_children():
@@ -85,14 +78,14 @@ func _on_child_entered_tree(node):
 
 func _on_mouse_entered():
 	mouse_is_over = true
-	GlobalVar.tooltip_text_province = region_name
+	$"..".tooltip_text_province = region_name
 	for node in get_children():
 		if node.is_class("Polygon2D"):
 			node.color=Color(colour.r+0.075,colour.g+0.075,colour.b+0.075,1)
 
 func _on_mouse_exited():
 	mouse_is_over = false
-	GlobalVar.mouse_over_province = false
+	$"..".mouse_over_province = false
 	for node in get_children():
 		if node.is_class("Polygon2D"):
 			node.color=colour
@@ -110,13 +103,13 @@ func _unhandled_input(event):
 					node.default_color=Color(1,1,0,1)
 					node.z_index=2
 					await get_tree().create_timer(0.001).timeout
-					GlobalVar.selected_province = self
+					$"..".selected_province = self
 		else:
 			for node in get_children():
 				if node.is_class("Line2D"):
 					node.default_color=Color(1,1,1,1)
 					node.z_index=0
-					GlobalVar.selected_province = null
+					$"..".selected_province = null
 
 func import_file(filepath):
 	var file = FileAccess.open(filepath, FileAccess.READ)

@@ -6,6 +6,7 @@
 extends Camera2D
 
 var acceleration = 0
+var zoom_level = 0.5
 
 func _process(delta):
 	var viewport_size = get_viewport_rect().size
@@ -32,10 +33,10 @@ func _process(delta):
 		diag_fix=sqrt(2)
 	
 	if Input.is_action_just_pressed("cam_in"):
-		GlobalVar.zoom_level-=0.05
+		zoom_level-=0.05
 	if Input.is_action_just_pressed("cam_out"):
-		GlobalVar.zoom_level+=0.05
-	GlobalVar.zoom_level=clamp(GlobalVar.zoom_level,0.1,5)
-	zoom=Vector2(GlobalVar.zoom_level,GlobalVar.zoom_level)
+		zoom_level+=0.05
+	zoom_level=clamp(zoom_level,0.1,5)
+	zoom=Vector2(zoom_level,zoom_level)
 	
-	position += ((pan_direction * (100+acceleration) * delta)/diag_fix)/GlobalVar.zoom_level
+	position += ((pan_direction * (100+acceleration) * delta)/diag_fix)/zoom_level

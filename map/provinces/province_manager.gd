@@ -1,18 +1,23 @@
-# gen_provinces.gd
+# province_manager.gd
 # Copyleft (c) 2024 daysant - STRUGGLE & STARS
 # This file is licensed under the terms of the AGPL v3.0-or-later
 # daysant@proton.me
 
 extends Node2D
+var provinces_loaded
 
-@onready var image_source = "res://assets/map/testing.png"
+@onready var image_source = "res://map/testing.png"
 
 var pixels_read = 0
 var pixels_to_report = 100000
 var total_pixels = 0
 
+var mouse_over_province = false
+var selected_province = null
+var tooltip_text_province = ""
+
 func _ready():
-	GlobalVar.provinces_loaded = false
+	provinces_loaded = false
 	load_regions()
 	
 func _process(_delta):
@@ -21,7 +26,7 @@ func _process(_delta):
 func load_regions():
 	var image = $"../map".get_texture().get_image()
 	var pixel_colour_dict = get_pixel_colour_dict(image)
-	var regions_dict = import_file("res://assets/map/provinces.txt")
+	var regions_dict = import_file("res://map/provinces.txt")
 	
 	if regions_dict == null:
 		Logger.error("Regions dictionary file not found or failed to parse")
@@ -34,7 +39,7 @@ func load_regions():
 	Logger.info("Map loaded")
 	
 	for info in regions_dict:
-		var region = load("res://scenes/province.tscn").instantiate()
+		var region = load("res://map/provinces/province.tscn").instantiate()
 		
 		region.region_name = regions_dict[info]["provname"]
 		region.region_owner = regions_dict[info]["owner"]
@@ -73,7 +78,7 @@ func load_regions():
 			sealine.width = 25.0
 			sealine.z_index = -1
 
-	GlobalVar.provinces_loaded = true
+	provinces_loaded = true
 	Logger.info("All provinces loaded")
 							
 func get_polygons(image, region_colour, pixel_colour_dict):

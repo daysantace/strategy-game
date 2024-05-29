@@ -1,15 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch8gpswjprwpi"]
+[gd_scene load_steps=4 format=3 uid="uid://ch8gpswjprwpi"]
 
-[ext_resource type="Script" path="res://scripts/army.gd" id="1_0lpw6"]
-[ext_resource type="Theme" uid="uid://c05xqk7sjf6b3" path="res://assets/themes/army.tres" id="1_8vf5c"]
-[ext_resource type="Theme" uid="uid://cr6cna1qn3crn" path="res://assets/themes/labels.tres" id="2_vup0t"]
-[ext_resource type="Texture2D" uid="uid://cffkuyt3jyx70" path="res://assets/flags/flagNIHN.svg" id="4_1rtw2"]
+[ext_resource type="Script" path="res://army/army.gd" id="1_0lpw6"]
+[ext_resource type="Theme" path="res://army/army.tres" id="2_vup0t"]
+[ext_resource type="Texture2D" uid="uid://cffkuyt3jyx70" path="res://army/flags/flagNIHN.svg" id="4_1rtw2"]
 
 [node name="army" type="Control"]
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
-theme = ExtResource("1_8vf5c")
+theme = ExtResource("2_vup0t")
 script = ExtResource("1_0lpw6")
 
 [node name="selected_border" type="ColorRect" parent="."]

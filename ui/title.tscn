@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dt4ngnre4o344"]
 
-[ext_resource type="Script" path="res://scripts/title.gd" id="1_i8wsp"]
+[ext_resource type="Script" path="res://ui/title.gd" id="1_1l4ag"]
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -9,16 +9,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i8wsp")
+script = ExtResource("1_1l4ag")
 
-[node name="version" type="Label" parent="."]
+[node name="Version" type="Label" parent="."]
 layout_mode = 2
 offset_left = 8.0
 offset_top = 7.0
 offset_right = 364.0
 offset_bottom = 30.0
 theme_override_font_sizes/font_size = 20
-text = "Build 20240526"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -34,36 +33,36 @@ offset_bottom = 92.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "STRUGGLE AND STARS"
 
-[node name="buttons" type="VBoxContainer" parent="VBoxContainer"]
+[node name="Buttons" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="start" type="Button" parent="VBoxContainer/buttons"]
+[node name="Start" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Start"
 
-[node name="options" type="Button" parent="VBoxContainer/buttons"]
+[node name="Options" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "    Options    "
 
-[node name="credits" type="Button" parent="VBoxContainer/buttons"]
+[node name="Credits" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Credits"
 
-[node name="exit" type="Button" parent="VBoxContainer/buttons"]
+[node name="Exit" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Exit"
 
-[connection signal="pressed" from="VBoxContainer/buttons/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/buttons/options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/buttons/credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="VBoxContainer/buttons/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/Exit" to="." method="_on_exit_pressed"]

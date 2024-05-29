@@ -6,15 +6,16 @@
 extends Control
 
 func _ready():
-	Logger.info("Version: Build 20240526")
+	Logger.info("Version: "+str(ProjectSettings.get_setting("application/config/version")))
 	Logger.info("OS vendor: "+OS.get_name())
+	$Version.text=str(ProjectSettings.get_setting("application/config/version"))
 	pass
 
-func _process(delta):
+func _process(_delta):
 	pass
 	
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://scenes/map.tscn")
+	get_tree().change_scene_to_file("res://map/map.tscn")
 
 func _on_exit_pressed():
 	get_tree().quit()

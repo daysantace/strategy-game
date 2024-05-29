@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wrex42fu67ay"
-path="res://.godot/imported/flagHNGK.svg-3ba7c31c24252b5a7406fd6c0a4e0276.ctex"
+path="res://.godot/imported/flagHNGK.svg-d521c2acc9ebd7099dc0c6b49a85cc21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/flags/flagHNGK.svg"
-dest_files=["res://.godot/imported/flagHNGK.svg-3ba7c31c24252b5a7406fd6c0a4e0276.ctex"]
+source_file="res://army/flags/flagHNGK.svg"
+dest_files=["res://.godot/imported/flagHNGK.svg-d521c2acc9ebd7099dc0c6b49a85cc21.ctex"]
 
 [params]
 

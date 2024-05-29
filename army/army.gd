@@ -13,12 +13,14 @@ var type = "infantry"
 var set_selected = false
 
 func _ready():
-	var flag_texture = load("res://assets/flags/flag"+commander+".svg")
+	var flag_texture = load("res://army/flags/flag"+commander+".svg")
 	if flag_texture:
 		$flag.texture=flag_texture
 	else:
 		Logger.error("Flag texture not identified for "+commander)
 	fix_unit_colour()
+	
+	position = location.find_incenter()
 
 func _process(_delta):
 	if selected:
@@ -27,7 +29,7 @@ func _process(_delta):
 		$selected_border.visible = false
 		
 func fix_unit_colour():
-	if commander == GlobalVar.player:
+	if commander == GameManager.player:
 		$num_background.color = Color(0.0,0.388,0.188)
 	else:
 		$num_background.color = Color(0.33,0.33,0.33)
@@ -36,14 +38,14 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if Input.is_action_pressed("gameplay_select_multiple"):
 			pass
-		elif GlobalVar.selected_army == self:
+		elif $"..".selected_army == self:
 			pass
 		else:
 			selected = false
 
 func _on_pressed():
-	GlobalVar.selected_army == self
-	if commander == GlobalVar.player:
+	$"..".selected_army == self
+	if commander == GameManager.player:
 		if Input.is_action_pressed("gameplay_select_multiple"):
 			selected = !selected
 		else:

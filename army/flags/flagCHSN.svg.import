@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csu44kw15yecc"
-path="res://.godot/imported/provinces.png-948a2d08b1df8df0998c1802b89c63f3.ctex"
+uid="uid://ekx5m50gv2ui"
+path="res://.godot/imported/flagCHSN.svg-78e2ba54d9d63f2e9179aa9a6d1d718b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/provinces.png"
-dest_files=["res://.godot/imported/provinces.png-948a2d08b1df8df0998c1802b89c63f3.ctex"]
+source_file="res://army/flags/flagCHSN.svg"
+dest_files=["res://.godot/imported/flagCHSN.svg-78e2ba54d9d63f2e9179aa9a6d1d718b.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1
-roughness/mode=1
+roughness/mode=0
 roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
@@ -31,4 +31,7 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="STRUGGLE & STARS"
-config/version="Build 20240526"
-run/main_scene="res://scenes/title.tscn"
+config/version="Build 20240527"
+run/main_scene="res://ui/title.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 
 [autoload]
 
-Logger="*res://scripts/log.gd"
-GlobalVar="*res://scripts/global_vars.gd"
+Logger="*res://common/log.gd"
+GameManager="*res://common/game_manager.gd"
 
 [debug]
 
@@ -35,8 +35,7 @@ window/vsync/vsync_mode=0
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
-theme/custom="res://assets/themes/labels.tres"
-theme/custom_font="res://assets/font.ttf"
+theme/custom_font="res://common/font.ttf"
 theme/default_font_hinting=2
 theme/default_font_multichannel_signed_distance_field=true
 theme/default_font_generate_mipmaps=true

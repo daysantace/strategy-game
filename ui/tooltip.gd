@@ -6,10 +6,10 @@
 extends Node2D
 
 func _process(_delta):
-	if GlobalVar.mouse_over_province:
+	if $"../../provinces".mouse_over_province:
 		visible = true
 	else:
 		visible = false
 		
 	position = get_viewport().get_mouse_position()
-	$province_name.text = GlobalVar.tooltip_text_province
+	$province_name.text = $"../../provinces".tooltip_text_province
