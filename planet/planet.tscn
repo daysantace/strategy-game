@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8dudpdsyv24d"]
+
+[ext_resource type="Script" path="res://ui/camera.gd" id="1_6gtyl"]
+[ext_resource type="Script" path="res://planet/mesh.gd" id="1_iay84"]
+[ext_resource type="Texture2D" uid="uid://dmtrflam70xui" path="res://planet/earth/heightmap.png" id="1_u5txl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k81hd"]
+albedo_texture = ExtResource("1_u5txl")
+
+[sub_resource type="SphereMesh" id="SphereMesh_xvslh"]
+lightmap_size_hint = Vector2i(1572, 787)
+material = SubResource("StandardMaterial3D_k81hd")
+radius = 50.0
+height = 100.0
+radial_segments = 1024
+rings = 512
+
+[node name="Planet" type="Node3D"]
+
+[node name="PlanetMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_xvslh")
+script = ExtResource("1_iay84")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+script = ExtResource("1_6gtyl")
+
+[node name="Camera" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 112.725)
+fov = 45.9
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CameraPivot"]

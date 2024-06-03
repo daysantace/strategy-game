@@ -1,6 +1,8 @@
 # log.gd
+# Small library for logging to the console and log file (eventually)
+
 # Copyleft (c) 2024 daysant - STRUGGLE & STARS
-# This file is licensed under the terms of the AGPL v3.0-or-later
+# This file is licensed under the terms of the Affero GPL v3.0-or-later.
 # daysant@proton.me
 
 extends Node

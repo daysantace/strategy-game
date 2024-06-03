@@ -1,42 +1,43 @@
 # camera.gd
+# Camera pan and zoom
+
 # Copyleft (c) 2024 daysant - STRUGGLE & STARS
-# This file is licensed under the terms of the AGPL v3.0-or-later
+# This file is licensed under the terms of the Affero GPL v3.0-or-later.
 # daysant@proton.me
 
-extends Camera2D
+extends Node3D
 
-var acceleration = 0
-var zoom_level = 0.5
+var rotation_sensitivity = 0.1
+var zoom_sensitivity = 1.0
+var min_fov = 3.0
+var max_fov = 90.0
+var previous_mouse_position : Vector2
+var pitch = 0.0
+var yaw = 0.0
+@onready var camera = $Camera
 
-func _process(delta):
-	var viewport_size = get_viewport_rect().size
-	var pan_direction = Vector2()
-	var diag_fix=1
-	
-	if get_viewport().get_mouse_position().x < 1:
-		pan_direction.x = -1
-	elif get_viewport().get_mouse_position().x > viewport_size.x-2:
-		pan_direction.x = 1
+func _ready():
+	previous_mouse_position = get_viewport().get_mouse_position()
+	set_process_input(true)
 
-	if get_viewport().get_mouse_position().y < 1:
-		pan_direction.y = -1
-	elif get_viewport().get_mouse_position().y > viewport_size.y-2:
-		pan_direction.y = 1
-	
-	if acceleration<500:
-		acceleration+=50
-	
-	if pan_direction.y==0 and pan_direction.x==0:
-		acceleration=0
-	
-	if pan_direction.y!=0 and pan_direction.x!=0:
-		diag_fix=sqrt(2)
-	
-	if Input.is_action_just_pressed("cam_in"):
-		zoom_level-=0.05
-	if Input.is_action_just_pressed("cam_out"):
-		zoom_level+=0.05
-	zoom_level=clamp(zoom_level,0.1,5)
-	zoom=Vector2(zoom_level,zoom_level)
-	
-	position += ((pan_direction * (100+acceleration) * delta)/diag_fix)/zoom_level
+func _input(event: InputEvent):
+	if Input.is_action_pressed("camera_pan"):
+		if event is InputEventMouseMotion:
+			var mouse_delta: Vector2 = event.relative
+			
+			yaw -= mouse_delta.x * rotation_sensitivity
+			pitch -= mouse_delta.y * rotation_sensitivity
+			
+			pitch = clamp(pitch, -89, 89)
+			
+			rotation_degrees.y = yaw
+			rotation_degrees.x = pitch
+			rotation_degrees.z = 0
+	else:
+		previous_mouse_position = get_viewport().get_mouse_position()
+		
+		if Input.is_action_just_pressed("camera_in"):
+			camera.fov = clamp(camera.fov + zoom_sensitivity, min_fov, max_fov)
+			
+		if Input.is_action_just_pressed("camera_out"):
+			camera.fov = clamp(camera.fov - zoom_sensitivity, min_fov, max_fov)
