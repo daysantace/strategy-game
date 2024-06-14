@@ -12,7 +12,7 @@ var zoom_sensitivity = 1.0
 var min_fov = 3.0
 var max_fov = 90.0
 var previous_mouse_position : Vector2
-var pitch = 0.0
+var pitch = 0.0 
 var yaw = 0.0
 @onready var camera = $Camera
 

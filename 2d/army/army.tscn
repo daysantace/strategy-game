@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://army/army.gd" id="1_0lpw6"]
 [ext_resource type="Theme" path="res://army/army.tres" id="2_vup0t"]
-[ext_resource type="Texture2D" uid="uid://cffkuyt3jyx70" path="res://src/2d/army/flags/flagNIHN.svg" id="4_1rtw2"]
+[ext_resource type="Texture2D" uid="uid://cffkuyt3jyx70" path="res://2d/army/flags/flagNIHN.svg" id="4_1rtw2"]
 
 [node name="army" type="Control"]
 z_index = 10

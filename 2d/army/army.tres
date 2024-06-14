@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://c05xqk7sjf6b3"]
 
-[ext_resource type="FontFile" uid="uid://bvq1mv006ou60" path="res://src/common/font.ttf" id="1_stasm"]
+[ext_resource type="FontFile" uid="uid://bvq1mv006ou60" path="res://common/font.ttf" id="1_stasm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gvstd"]
 

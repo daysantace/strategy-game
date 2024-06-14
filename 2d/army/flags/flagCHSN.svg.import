@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ekx5m50gv2ui"
-path="res://.godot/imported/flagCHSN.svg-ec2c2816372c08a04df60dcd7cc3f1d8.ctex"
+path="res://.godot/imported/flagCHSN.svg-73b80414304d4d5820f71d5578471bbd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/2d/army/flags/flagCHSN.svg"
-dest_files=["res://.godot/imported/flagCHSN.svg-ec2c2816372c08a04df60dcd7cc3f1d8.ctex"]
+source_file="res://2d/army/flags/flagCHSN.svg"
+dest_files=["res://.godot/imported/flagCHSN.svg-73b80414304d4d5820f71d5578471bbd.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wrex42fu67ay"
-path="res://.godot/imported/flagHNGK.svg-ae543c7aec7e3af1b8ca1d87a5e31344.ctex"
+uid="uid://cffkuyt3jyx70"
+path="res://.godot/imported/flagNIHN.svg-df650099429bcae452570b61688c5496.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/2d/army/flags/flagHNGK.svg"
-dest_files=["res://.godot/imported/flagHNGK.svg-ae543c7aec7e3af1b8ca1d87a5e31344.ctex"]
+source_file="res://2d/army/flags/flagNIHN.svg"
+dest_files=["res://.godot/imported/flagNIHN.svg-df650099429bcae452570b61688c5496.ctex"]
 
 [params]
 
