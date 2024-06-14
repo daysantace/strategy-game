@@ -1,0 +1,18 @@
+{
+	"NIHN":{
+		"name":"Japan",
+		"colour":"#ff6666"
+	},
+	"CHSN":{
+		"name":"North Korea",
+		"colour":"#7a1f1f"
+	},
+	"HNGK":{
+		"name":"South Korea",
+		"colour":"#4770eb"
+	},
+	"RSYA":{
+		"name":"Russia",
+		"colour":"#166916"
+	}
+}
