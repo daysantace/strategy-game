@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8dudpdsyv24d"]
+[gd_scene load_steps=7 format=3 uid="uid://b8dudpdsyv24d"]
 
 [ext_resource type="Script" path="res://ui/camera.gd" id="1_6gtyl"]
 [ext_resource type="Texture2D" uid="uid://4my021dd48mp" path="res://planet/planets/earth/terrain.png" id="1_h5d0o"]
 [ext_resource type="Script" path="res://planet/mesh.gd" id="1_iay84"]
-[ext_resource type="Script" path="res://planet/provinces/province_manager.gd" id="4_dpi68"]
 [ext_resource type="Script" path="res://ui/framerate.gd" id="4_ow6f4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k81hd"]
@@ -32,39 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 112.725)
 fov = 45.9
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="CameraPivot"]
-
-[node name="PlanetTextures" type="Node" parent="."]
-
-[node name="Provinces" type="SubViewport" parent="PlanetTextures"]
-fsr_sharpness = 2.0
-sdf_oversize = 0
-sdf_scale = 0
-size = Vector2i(8192, 4096)
-
-[node name="Terrain" type="Node" parent="PlanetTextures/Provinces"]
-
-[node name="Label" type="Label" parent="PlanetTextures/Provinces/Terrain"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = -350.0
-offset_right = 350.0
-offset_bottom = 350.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "This is some text."
-
-[node name="Terrain" type="Sprite2D" parent="PlanetTextures/Provinces/Terrain"]
-visible = false
-texture = ExtResource("1_h5d0o")
-centered = false
-
-[node name="ProvinceManager" type="Node2D" parent="PlanetTextures/Provinces"]
-script = ExtResource("4_dpi68")
 
 [node name="Gui" type="CanvasLayer" parent="."]
 

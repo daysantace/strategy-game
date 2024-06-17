@@ -75,7 +75,7 @@ func load_regions():
 
 	provinces_loaded = true
 	Logger.info("All provinces loaded")
-							
+
 func get_polygons(image, region_colour, pixel_colour_dict):
 	var target_image = Image.create(image.get_size().x, image.get_size().y, false, Image.FORMAT_RGBA8)
 	for value in pixel_colour_dict[region_colour]:
@@ -118,7 +118,7 @@ func get_pixel_colour_dict(image):
 	
 	return pixel_colour_dict
 
-func process_rows(image, width, height, start_row, end_row, partial_dict):
+func process_rows(image, width, start_row, end_row, partial_dict):
 	for y in range(start_row, end_row):
 		for x in range(width):
 			var pixel_colour = "#" + str(image.get_pixel(int(x), int(y)).to_html(false))

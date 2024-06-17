@@ -10,9 +10,8 @@ extends MeshInstance3D
 var n = 0
 
 func _ready():
-	var texture = ViewportTexture.new()
-	texture = $"../PlanetTextures/Provinces".get_texture()
-	
+	var texture = load("res://planet/planets/earth/terrain.png")
+
 	var heightmap = ResourceLoader.load(GameManager.planet+"heightmap.png")
 	
 	if not heightmap:

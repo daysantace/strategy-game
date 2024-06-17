@@ -136,7 +136,6 @@ func fix_polygon(polygon):
 	for i in get_children():
 		for other_polygon in i.get_children():
 			if other_polygon.is_class("Polygon2D") and other_polygon.polygon!=new_polygon:
-				var clip = Polygon2D.new()
 				if !Geometry2D.intersect_polygons(new_polygon,other_polygon.polygon).is_empty():
 					new_polygon=Geometry2D.clip_polygons(new_polygon,other_polygon.polygon)[0]
 				else:
