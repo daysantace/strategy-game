@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="STRUGGLE & STARS"
-config/version="Build 20240620"
+config/version="Build 20240717"
 run/main_scene="res://src/ui/title/title.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 
 [autoload]
 
-GameManager="*res://src/common/game_manager.gd"
 Logger="*res://src/common/Logger.cs"
+GameManager="*res://src/common/GameManager.cs"
 
 [debug]
 
@@ -106,5 +106,5 @@ camera_pan={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 gl_compatibility/nvidia_disable_threaded_optimization=false
-environment/defaults/default_clear_color=Color(0.145098, 0.411765, 0.611765, 1)

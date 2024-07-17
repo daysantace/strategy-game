@@ -10,3 +10,23 @@ daysant@proton.me
 using Godot;
 using System;
 
+public partial class ProvinceManager : Node
+{
+    private Logger logger;
+
+    private bool provincesLoaded;
+    private string imageSource;
+    public override void _Ready()
+    {
+        provincesLoaded = false;
+        imageSource = "";
+        logger = GetNode<Logger>("/root/Logger");
+        logger.Debug("Success!");
+    }
+    // TODO read image 
+
+
+    // TODO parse image into provinces 
+
+    // TODO detect input 
+}

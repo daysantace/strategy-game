@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/ui/camera.gd" id="1_6gtyl"]
 [ext_resource type="Texture2D" uid="uid://4my021dd48mp" path="res://src/planet/planets/earth/terrain.png" id="1_h5d0o"]
-[ext_resource type="Script" path="res://src/planet/mesh.gd" id="1_iay84"]
+[ext_resource type="Script" path="res://src/planet/mesh.gd" id="2_0ojpi"]
 [ext_resource type="Script" path="res://src/ui/framerate.gd" id="4_ow6f4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k81hd"]
@@ -20,8 +20,9 @@ rings = 1024
 [node name="Planet" type="Node3D"]
 
 [node name="PlanetMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("SphereMesh_xvslh")
-script = ExtResource("1_iay84")
+script = ExtResource("2_0ojpi")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 script = ExtResource("1_6gtyl")
@@ -34,9 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 49.9072)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="CameraPivot/Pivot"]
 
 [node name="Camera" type="Camera3D" parent="CameraPivot/Pivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 112.725)
-cull_mask = 1047551
-current = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41817, 112.725)
 
 [node name="Gui" type="CanvasLayer" parent="."]
 

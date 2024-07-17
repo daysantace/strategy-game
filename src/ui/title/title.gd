@@ -9,8 +9,6 @@ extends Control
 
 func _ready():
 	$VersionLabel.text = ProjectSettings.get_setting("application/config/version")
-	Logger.Info("Version: "+ProjectSettings.get_setting("application/config/version"))
-	Logger.Info("OS vendor: "+OS.get_name())
 
 func _process(_delta):
 	pass
