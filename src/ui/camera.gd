@@ -51,22 +51,9 @@ func _process(delta):
 	yaw = lerp(yaw, target_yaw, delta * rotation_smoothness)
 	pitch = lerp(pitch, target_pitch, delta * rotation_smoothness)
 	
-	var tilt = 0.0
-	if camera.fov < tilt_start_fov:
-		var tilt_factor = (tilt_start_fov - camera.fov) / (tilt_start_fov - min_fov)
-		tilt = tilt_angle * tilt_factor
-	
-	# Update pivot rotation
 	pivot.rotation = Vector3.ZERO
 	pivot.rotate_y(deg_to_rad(-yaw))
 	pivot.rotate_object_local(Vector3.RIGHT, deg_to_rad(-pitch))
 	
-	# Apply tilt to camera
-	camera.rotation = Vector3.ZERO
-	camera.rotate_object_local(Vector3.RIGHT, deg_to_rad(tilt))
-	
-	# Update FOV
 	camera.fov = lerp(camera.fov, target_fov, delta * zoom_smoothness)
 	
-	# Ensure the pivot is always positioned at the target
-	global_transform.origin = target.global_transform.origin

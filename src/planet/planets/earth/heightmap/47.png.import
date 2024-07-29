@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4my021dd48mp"
-path.s3tc="res://.godot/imported/terrain.png-f570a855aae9ecd4fe390a3207a05897.s3tc.ctex"
+uid="uid://dwafphk6m5ayo"
+path="res://.godot/imported/47.png-e8fdf9ac2a22f3b4c6487c13d7e38328.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/planet/planets/earth/terrain.png"
-dest_files=["res://.godot/imported/terrain.png-f570a855aae9ecd4fe390a3207a05897.s3tc.ctex"]
+source_file="res://src/planet/planets/earth/heightmap/47.png"
+dest_files=["res://.godot/imported/47.png-e8fdf9ac2a22f3b4c6487c13d7e38328.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

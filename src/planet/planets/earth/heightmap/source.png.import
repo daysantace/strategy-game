@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://dmtrflam70xui"
+path="res://.godot/imported/source.png-eaad9d416d39e0b50b1fdd6e08ab0ff7.image"
+
+[deps]
+
+source_file="res://src/planet/planets/earth/heightmap/source.png"
+dest_files=["res://.godot/imported/source.png-eaad9d416d39e0b50b1fdd6e08ab0ff7.image"]
+
+[params]
+
